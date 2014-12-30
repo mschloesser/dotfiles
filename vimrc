@@ -3,6 +3,9 @@
 
 " ================ General Config ====================
 
+scriptencoding utf-8
+set encoding=utf-8
+
 set number                      "Line numbers are good
 set backspace=indent,eol,start  "Allow backspace in insert mode
 set history=1000                "Store lots of :cmdline history
