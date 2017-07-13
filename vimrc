@@ -12,8 +12,12 @@ set history=1000                "Store lots of :cmdline history
 set showcmd                     "Show incomplete cmds down the bottom
 set showmode                    "Show current mode down the bottom
 set gcr=a:blinkon0              "Disable cursor blink
-set visualbell                  "No sounds
 set autoread                    "Reload files changed outside vim
+set laststatus=2
+set noerrorbells visualbell t_vb=
+if has('autocmd')
+  autocmd GUIEnter * set visualbell t_vb=
+endif
 
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
@@ -69,3 +73,43 @@ set nofoldenable        "dont fold by default
 set scrolloff=8         "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
+
+
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+
+
+" ================ Split panes ======================
+set splitbelow
+set splitright
+
+" ================ Plugins (vim-plug) ===============
+call plug#begin('~/.vim/bundle')
+
+Plug 'scrooloose/nerdtree'
+Plug 'wincent/command-t'
+Plug 'scrooloose/nerdcommenter'
+Plug 'honza/vim-snippets'
+Plug 'editorconfig/editorconfig-vim'
+
+Plug 'valloric/youcompleteme'
+Plug 'tpope/vim-surround'
+Plug 'scrooloose/nerdcommenter'
+
+Plug 'pangloss/vim-javascript'
+Plug 'moll/vim-node'
+Plug 'ternjs/tern_for_vim'
+Plug 'maksimr/vim-jsbeautify'
+
+Plug 'plasticboy/vim-markdown'
+
+Plug 'stanangeloff/php.vim'
+Plug 'arnaud-lb/vim-php-namespace'
+Plug 'shawncplus/phpcomplete.vim'
+
+call plug#end()
+
+map <c-f> :call JsBeautify()<cr>
+
+
