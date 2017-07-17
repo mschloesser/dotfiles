@@ -19,6 +19,20 @@ if has('autocmd')
   autocmd GUIEnter * set visualbell t_vb=
 endif
 
+" The following command will change the 'completeopt' option 
+" so that Vim's popup menu doesn't select the first completion item, 
+" but rather just inserts the longest common text of all matches; 
+" and the menu will come up even if there's only one match. 
+set completeopt=menuone
+
+" change the behavior of the <Enter> key when the popup menu is visible. 
+" In that case the Enter key will simply select the highlighted menu item
+"inoremap <expr> <Enter> pumvisible() ? "\<C-y>" : "\<C-g>u\<Enter>"
+
+" Keeps a menu item always highlighted
+" inoremap <expr> <C-n> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+" inoremap <expr> <M-,> pumvisible() ? '<C-n>' : '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
 " http://items.sjbach.com/319/configuring-vim-right
@@ -89,14 +103,18 @@ call plug#begin('~/.vim/bundle')
 
 Plug 'scrooloose/nerdtree'
 Plug 'wincent/command-t'
-Plug 'scrooloose/nerdcommenter'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'honza/vim-snippets'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'szw/vim-tags'
+Plug 'majutsushi/tagbar'
+Plug 'easymotion/vim-easymotion'
 
 Plug 'valloric/youcompleteme'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 
+" ==== Markdown ====
 Plug 'pangloss/vim-javascript'
 Plug 'moll/vim-node'
 Plug 'ternjs/tern_for_vim'
@@ -104,12 +122,21 @@ Plug 'maksimr/vim-jsbeautify'
 
 Plug 'plasticboy/vim-markdown'
 
+" ==== PHP ====
 Plug 'stanangeloff/php.vim'
 Plug 'arnaud-lb/vim-php-namespace'
 Plug 'shawncplus/phpcomplete.vim'
+Plug 'vim-php/tagbar-phpctags'
 
 call plug#end()
 
 map <c-f> :call JsBeautify()<cr>
 
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
 
+" These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
+" Without these mappings, `n` & `N` works fine. (These mappings just provide
+" different highlight method and have some other features )
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
