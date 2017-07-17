@@ -39,7 +39,9 @@ set completeopt=menuone
 set hidden
 
 "turn on syntax highlighting
-syntax on
+syntax enable
+set background=dark
+colorscheme solarized
 
 " ================ Turn Off Swap Files ==============
 
@@ -101,6 +103,7 @@ set splitright
 " ================ Plugins (vim-plug) ===============
 call plug#begin('~/.vim/bundle')
 
+Plug 'altercation/vim-colors-solarized'
 Plug 'scrooloose/nerdtree'
 Plug 'wincent/command-t'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -129,8 +132,6 @@ Plug 'shawncplus/phpcomplete.vim'
 Plug 'vim-php/tagbar-phpctags'
 
 call plug#end()
-
-map <c-f> :call JsBeautify()<cr>
 
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
